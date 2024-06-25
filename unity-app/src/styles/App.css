@@ -1,18 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
-
-.App-main {
-  padding: 20px;
 }
 
 .search-bar {
@@ -46,15 +42,6 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 10px;
-}
-
-.language-switch,
-.login-button,
-.sign-in-button {
-  margin: 0 10px;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
 }
 
 .language-switch {
