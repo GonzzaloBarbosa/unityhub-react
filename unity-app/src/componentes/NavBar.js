@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import '../styles/NavBar.css';
 import { MenuItens } from './MenuItens';
+import { Link } from 'react-router-dom';
 
 
 //componente da classe
@@ -13,8 +14,8 @@ class Navbar extends Component {
                     {MenuItens.map((item, index) =>{
                         return(
                             <li key={index}>
-                                <a className={item.cName} href='/'>
-                                <i className={item.icone}></i> {item.titulo}</a>
+                                <Link className={item.cName} to={item.url}>
+                                <i className={item.icone}></i> {item.titulo}</Link>
                             </li>
                         )
                     })}
