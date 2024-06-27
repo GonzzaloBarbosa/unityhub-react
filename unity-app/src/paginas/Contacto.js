@@ -1,9 +1,11 @@
+import ContactoForm from '../componentes/ContactoForm'
+
 function Contacto(){
     return(
         <>
-        <h1>Central de Ajuda</h1>
+            <ContactoForm/>
         </>
-    )
+    );
 }
 
 export default Contacto;

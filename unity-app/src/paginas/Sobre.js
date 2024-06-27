@@ -1,7 +1,9 @@
+import SobreHero from '../componentes/SobreHero'
+
 function Sobre(){
     return(
         <>
-        <h1>Sobre Nós</h1>
+            <SobreHero/>
         </>
     )
 }

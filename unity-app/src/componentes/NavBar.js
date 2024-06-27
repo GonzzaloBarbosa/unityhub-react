@@ -6,11 +6,20 @@ import { Link } from 'react-router-dom';
 
 //componente da classe
 class Navbar extends Component {
+    state = {clicked:false};
+    handleClick = () =>{
+        this.setState({ clicked: !this.state.clicked})
+    }
     render(){
         return(
             <nav className="NavbarItems">
-                <h1 className="navbar-logo">UnityHub</h1>
-                <ul className="nav-menu">
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <h1 className="navbar-logo">UnityHub</h1>
+                </Link>
+                <div className='menu-icons' onClick={this.handleClick}>
+                    <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+                </div>
+                <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
                     {MenuItens.map((item, index) =>{
                         return(
                             <li key={index}>
@@ -21,7 +30,7 @@ class Navbar extends Component {
                     })}
                     <button>Sign In</button>
                 </ul>
-                </nav>
+            </nav>
         )
     }
 }

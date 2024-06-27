@@ -9,13 +9,13 @@ import Contacto from './paginas/Contacto';
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Routes>
         <Route path="/" element= {<Home/>}/>
         <Route path="/sobre" element= {<Sobre/>}/>
         <Route path="/contacto" element= {<Contacto/>}/>
       </Routes>
-
-      <NavBar />
+      
     </div>
   );
 }
