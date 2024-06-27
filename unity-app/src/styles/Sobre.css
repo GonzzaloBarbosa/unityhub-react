@@ -1,0 +1,130 @@
+.heroContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.imagem-fundo {
+  position: absolute;
+  top: auto;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Sobreposição para escurecer a imagem de fundo */
+.overlay {
+  position: absolute;
+  top: auto;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0); /* Ajuste a opacidade conforme necessário */
+
+}
+
+/* Estilos para o container das fotos e informações */
+.fotoSobre {
+  display: flex;
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  height: 100%; /* Ocupa toda a altura do heroContainer */
+  padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilos para cada item (foto + informações) */
+.sobreItem {
+  text-align: center;
+  margin: 0 110px; /* Espaçamento entre os itens */
+}
+
+/* Container para a imagem e o link do GitHub */
+.imagem-container {
+  position: relative;
+  width: 400px; /* Tamanho das imagens */
+  height: 400px; /* Ajuste conforme necessário */
+  margin-bottom: 40px; /* Espaçamento abaixo da imagem e do texto */
+}
+
+.imagem-sobre {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que a imagem ocupe todo o espaço */
+  border-radius: 5%; /* Bordas arredondadas */
+  transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Link do GitHub */
+.github-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 50px;
+  background-color: rgba(27, 27, 27, 0.637);
+  border-radius: 5%; /* Bordas arredondadas */
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Exibir o link do GitHub ao passar o mouse sobre a imagem */
+.imagem-container:hover .github-link {
+  opacity: 1; /* Tornar visível */
+  transform: scale(1.1); /* Expande o link junto com a imagem */
+}
+
+/* Efeito de expansão ao passar o mouse */
+.imagem-container:hover .imagem-sobre {
+  transform: scale(1.1); /* Expande a imagem em 10% */
+}
+
+/* Estilos para o texto e links */
+.texto-sobre {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px; /* Espaçamento abaixo do bloco de texto */
+}
+
+.texto-sobre h2 {
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.texto-sobre p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+  .imagem-container {
+    width: 200px; /* Tamanho das imagens */
+    height: 200px; /* Ajusta a altura */
+  }
+
+  .texto-sobre h2 {
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    font-size: 1rem; /* Tamanho do título */
+    font-weight: 800; /* Peso do título */
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
