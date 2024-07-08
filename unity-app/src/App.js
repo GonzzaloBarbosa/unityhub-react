@@ -6,6 +6,7 @@ import Home from './paginas/Home';
 import Sobre from './paginas/Sobre';
 import Contacto from './paginas/Contacto';
 import LoginRegister from './paginas/SignIn';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

@@ -41,4 +41,10 @@
   .login-register-container button:hover {
     background-color: #0056b3;
   }
-  
+
+  .toast-container-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050; /* Ajuste a camada de exibição para garantir que está acima dos outros elementos */
+  }
