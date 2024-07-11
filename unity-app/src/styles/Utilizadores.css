@@ -1,0 +1,64 @@
+/* styles/Utilizadores.css */
+.utilizadores-container {
+    max-width: 600px;
+    margin: 100px auto; /* Adiciona margem superior de 100px */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .utilizadores-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .utilizador-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .utilizador-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .utilizador-info {
+    flex: 1;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .buttons button {
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: white;
+  }
+  
+  .buttons .btn-details {
+    background-color: #007bff;
+  }
+  
+  .buttons .btn-details:hover {
+    background-color: #0056b3;
+  }
+  
+  .buttons .btn-delete {
+    background-color: #dc3545;
+  }
+  
+  .buttons .btn-delete:hover {
+    background-color: #c82333;
+  }
+  

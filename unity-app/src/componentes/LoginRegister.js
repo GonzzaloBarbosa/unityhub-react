@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import axios from '../services/axiosConfig.js'; 
+import { useAuth } from '../services/AuthContext.js'; // Importar o contexto
 import '../styles/LoginRegister.css';
 
-//gere o login e o registo de utilizadores
 const LoginRegister = () => {
-    // Define o estado inicial: isLogin determina se o formulário é para login ou registo
   const [isLogin, setIsLogin] = useState(true);
-    // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,34 +17,26 @@ const LoginRegister = () => {
     country: '',
     city: ''
   });
-
-  //gerir as notificações (Toast)
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
-
-  //navegar entre página
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usar o contexto
 
-  //Função para atualizar os dados do formulário 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //Função para validar o formulário antes de enviar
   const validateForm = () => {
-    //validar a senha
     const uppercaseRegex = /[A-Z]/;
     const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
     const numberRegex = /^\d+$/;
 
-    //validação para o formulário de login
     if (isLogin) {
       if (!formData.email || !formData.password) {
         return { valid: false, message: 'Preencha todos os campos' };
       }
     } else {
-      //validação para o formulário de registo
       if (
         !formData.name ||
         !formData.email ||
@@ -76,7 +66,6 @@ const LoginRegister = () => {
     return { valid: true };
   };
 
-  //função para enviar o formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validation = validateForm();
@@ -89,7 +78,6 @@ const LoginRegister = () => {
 
     try {
       if (isLogin) {
-        // enviar uma solicitação de login
         const response = await axios.post('/api/UtilizadoresApi/login', {
           email: formData.email,
           password: formData.password
@@ -97,14 +85,14 @@ const LoginRegister = () => {
         console.log('Login successful:', response.data);
         setToastMessage('Login realizado com sucesso!');
         setToastType('success');
-        navigate('/'); //redireciona para a página inicial após o login
+        login(formData.email); // Chamar login do contexto
+        navigate('/');
       } else {
-        //envia uma solicitação de registo
         const response = await axios.post('/api/UtilizadoresApi/register', {
           nome: formData.name,
           email: formData.email,
           password: formData.password,
-          confirmPassword: formData.confirmPassword, // Adicionado campo ConfirmPassword
+          confirmPassword: formData.confirmPassword,
           telemovel: formData.phoneNumber,
           dataNascimento: formData.dateOfBirth,
           cidade: formData.city,
@@ -113,7 +101,7 @@ const LoginRegister = () => {
         console.log('Registration successful:', response.data);
         setToastMessage('Registro realizado com sucesso!');
         setToastType('success');
-        setIsLogin(true); // Muda para a tela de login após o registo
+        setIsLogin(true);
       }
     } catch (error) {
       console.error('Error:', error.response ? error.response.data : error.message);

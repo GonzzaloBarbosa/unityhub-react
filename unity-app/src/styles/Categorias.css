@@ -1,0 +1,99 @@
+/* styles/Categorias.css */
+.categorias-container {
+    max-width: 600px;
+    margin: 100px auto; /* Adiciona margem superior de 100px */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .categorias-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-categoria {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .add-categoria input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-categoria button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-categoria button:hover {
+    background-color: #0056b3;
+  }
+  
+  .categoria-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .categoria-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .categoria-list li .categoria-name {
+    flex: 1;
+  }
+  
+  .categoria-list li input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .categoria-list li .buttons {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .categoria-list li button {
+    padding: 8px 16px; /* Ajustar padding para uniformidade */
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: white;
+  }
+  
+  .categoria-list li .btn-edit {
+    background-color: #007bff;
+  }
+  
+  .categoria-list li .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .categoria-list li .btn-delete {
+    background-color: #dc3545;
+  }
+  
+  .categoria-list li .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
