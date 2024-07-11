@@ -41,7 +41,6 @@ const Utilizadores = () => {
             <span className="utilizador-info">{utilizador.email}</span>
             <div className="buttons">
               <button className="btn-details" onClick={() => handleViewDetails(utilizador)}>Detalhes</button>
-              <button className="btn-delete" onClick={() => handleDeleteUtilizador(utilizador.id)}>Eliminar</button>
             </div>
           </li>
         ))}
