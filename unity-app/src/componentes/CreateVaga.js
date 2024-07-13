@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../services/axiosConfig';
-import '../styles/CreateVaga.css'; // Importar o CSS específico para o componente
+import Select from 'react-select';
+import '../styles/CreateVaga.css';
 
-const CreateVaga = ({ onVagaCreated }) => {
-  const [nome, setNome] = useState('');
-  const [periodoVoluntariado, setPeriodoVoluntariado] = useState('');
-  const [local, setLocal] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [categoriaId, setCategoriaId] = useState(''); // Alterado para um valor único
+const CreateVaga = ({ onVagaCreated, onCancel }) => {
+  const [formData, setFormData] = useState({
+    nome: '',
+    periodoVoluntariado: '',
+    local: '',
+    descricao: '',
+    fotografia: '',
+    categoriaIds: []
+  });
   const [categorias, setCategorias] = useState([]);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
         const response = await axios.get('/api/CategoriasAPI');
-        if (Array.isArray(response.data)) {
-          setCategorias(response.data);
+        console.log('Resposta da API de categorias:', response.data);
+        if (response.data && Array.isArray(response.data.$values)) {
+          const categoriasOptions = response.data.$values.map(cat => ({ value: cat.id, label: cat.nome }));
+          setCategorias(categoriasOptions);
         } else {
           setCategorias([]);
         }
       } catch (error) {
-        console.error('Error fetching categorias', error);
+        console.error('Erro ao buscar categorias:', error);
         setCategorias([]);
       }
     };
@@ -28,92 +35,150 @@ const CreateVaga = ({ onVagaCreated }) => {
     fetchCategorias();
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
 
-    const novaVaga = {
-      nome,
-      periodoVoluntariado,
-      local,
-      descricao,
-      categoriaIds: [categoriaId], // Enviar como um array com um único valor
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFormData((prevData) => ({
+        ...prevData,
+        fotografia: reader.result
+      }));
     };
 
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCategoriaChange = (selectedOptions) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      categoriaIds: selectedOptions ? selectedOptions.map(option => option.value) : []
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const payload = {
+      nome: formData.nome,
+      periodoVoluntariado: formData.periodoVoluntariado,
+      local: formData.local,
+      descricao: formData.descricao,
+      fotografia: formData.fotografia,
+      categorias: formData.categoriaIds // Enviar apenas IDs
+    };
+    console.log('Dados enviados:', payload);
+
     try {
-      const response = await axios.post('/api/VagasAPI', novaVaga);
+      const response = await axios.post('/api/VagasAPI', payload);
       console.log('Vaga criada com sucesso', response.data);
-      // Limpar formulário após a criação
-      setNome('');
-      setPeriodoVoluntariado('');
-      setLocal('');
-      setDescricao('');
-      setCategoriaId('');
+      setFeedbackMessage('Vaga criada com sucesso!');
+      setFormData({
+        nome: '',
+        periodoVoluntariado: '',
+        local: '',
+        descricao: '',
+        fotografia: '',
+        categoriaIds: []
+      });
       if (onVagaCreated) {
-        onVagaCreated(); // Chamar a função onVagaCreated após a criação
+        onVagaCreated();
       }
     } catch (error) {
-      console.error('Error creating vaga', error);
+      if (error.response) {
+        console.error('Erro ao criar vaga', error.response.data);
+        setFeedbackMessage('Erro ao criar vaga: ' + error.response.data);
+      } else {
+        console.error('Erro ao criar vaga', error.message);
+        setFeedbackMessage('Erro ao criar vaga');
+      }
     }
   };
 
   return (
     <div className="container">
       <h2>Criar Nova Vaga</h2>
+      {feedbackMessage && <p>{feedbackMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Nome:</label>
           <input
             type="text"
+            name="nome"
             className="form-control"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            value={formData.nome}
+            onChange={handleInputChange}
+            required
           />
         </div>
         <div className="form-group">
           <label>Período de Voluntariado:</label>
           <input
             type="text"
+            name="periodoVoluntariado"
             className="form-control"
-            value={periodoVoluntariado}
-            onChange={(e) => setPeriodoVoluntariado(e.target.value)}
+            value={formData.periodoVoluntariado}
+            onChange={handleInputChange}
+            required
           />
         </div>
         <div className="form-group">
           <label>Local:</label>
           <input
             type="text"
+            name="local"
             className="form-control"
-            value={local}
-            onChange={(e) => setLocal(e.target.value)}
+            value={formData.local}
+            onChange={handleInputChange}
+            required
           />
         </div>
         <div className="form-group">
           <label>Descrição:</label>
           <textarea
+            name="descricao"
             className="form-control"
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
+            value={formData.descricao}
+            onChange={handleInputChange}
+            required
           ></textarea>
         </div>
         <div className="form-group">
-          <label>Categorias:</label>
-          <select
+          <label>Fotografia:</label>
+          <input
+            type="file"
             className="form-control"
-            value={categoriaId}
-            onChange={(e) => setCategoriaId(e.target.value)}
-          >
-            <option value="">Selecione uma categoria</option>
-            {Array.isArray(categorias) && categorias.map((categoria) => (
-              <option key={categoria.id} value={categoria.id}>
-                {categoria.nome}
-              </option>
-            ))}
-          </select>
+            onChange={handleFileChange}
+            required
+          />
         </div>
-        <button type="submit" className="btn btn-primary">Criar Vaga</button>
+        <div className="form-group">
+          <label>Categorias:</label>
+          <Select
+            isMulti
+            options={categorias}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={handleCategoriaChange}
+            value={categorias.filter(option => formData.categoriaIds.includes(option.value))}
+          />
+        </div>
+        <div className="form-buttons">
+          <button type="submit" className="btn-vaga">Criar Vaga</button>
+          <button type="button" className="btn-vaga btn-cancel" onClick={onCancel}>Voltar à Lista</button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default CreateVaga;
+export default CreateVaga;

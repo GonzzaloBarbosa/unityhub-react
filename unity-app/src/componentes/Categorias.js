@@ -1,6 +1,6 @@
 // componentes/Categorias.js
 import React, { useEffect, useState } from 'react';
-import axios from '../services/axiosConfig';
+import axios from 'axios'; // Supondo que axios esteja instalado como uma dependência separada
 import '../styles/Categorias.css';
 
 const Categorias = () => {
@@ -15,8 +15,8 @@ const Categorias = () => {
 
   const fetchCategorias = async () => {
     try {
-      const response = await axios.get('/api/CategoriasAPI');
-      setCategorias(response.data);
+      const response = await axios.get('https://localhost:7226/api/CategoriasAPI');
+      setCategorias(response.data['$values']);
     } catch (error) {
       console.error('Erro ao buscar categorias:', error);
     }
@@ -25,7 +25,7 @@ const Categorias = () => {
   const handleAddCategoria = async () => {
     if (newCategoria.trim()) {
       try {
-        await axios.post('/api/CategoriasAPI', { nome: newCategoria });
+        await axios.post('https://localhost:7226/api/CategoriasAPI', { nome: newCategoria });
         setNewCategoria('');
         fetchCategorias();
       } catch (error) {
@@ -36,7 +36,7 @@ const Categorias = () => {
 
   const handleDeleteCategoria = async (id) => {
     try {
-      await axios.delete(`/api/CategoriasAPI/${id}`);
+      await axios.delete('https://localhost:7226/api/CategoriasAPI/${id}');
       fetchCategorias();
     } catch (error) {
       console.error('Erro ao deletar categoria:', error);
@@ -46,7 +46,7 @@ const Categorias = () => {
   const handleEditCategoria = async () => {
     if (editCategoriaName.trim()) {
       try {
-        await axios.put(`/api/CategoriasAPI/${editCategoria.id}`, { id: editCategoria.id, nome: editCategoriaName });
+        await axios.put('https://localhost:7226/api/CategoriasAPI/${editCategoria.id}, { id: editCategoria.id, nome: editCategoriaName }');
         setEditCategoria(null);
         setEditCategoriaName('');
         fetchCategorias();

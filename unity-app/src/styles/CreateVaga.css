@@ -1,61 +1,57 @@
 .container {
-  max-width: 600px;
-  margin: 80px auto 20px auto; /* Adicione um margin-top maior para evitar sobreposição */
+  margin-top: 60px;
   padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group {
   margin-bottom: 15px;
-  text-align: left;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
+.form-control {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #ced4da;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
 }
 
-.form-group textarea {
-  resize: vertical;
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-button {
-  padding: 10px 20px;
+.btn-vaga {
   background-color: #007bff;
-  border: none;
+  border-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 4px;
-  color: white;
-  font-size: 16px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-button:hover {
+.btn-vaga:hover {
   background-color: #0056b3;
+  border-color: #004085;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-    }
+.btn-cancel {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Estilo específico para o react-select */
+.basic-multi-select {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
