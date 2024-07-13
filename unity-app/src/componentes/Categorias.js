@@ -1,6 +1,6 @@
 // componentes/Categorias.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Supondo que axios esteja instalado como uma dependência separada
+import axios from 'axios'; 
 import '../styles/Categorias.css';
 
 const Categorias = () => {
