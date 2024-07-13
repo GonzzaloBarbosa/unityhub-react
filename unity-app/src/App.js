@@ -9,6 +9,7 @@ import LoginRegister from './paginas/SignIn';
 import Category from './paginas/Categorias';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Utilizadores from './componentes/Utilizadores';
+import VagasList from './componentes/VagasList';
 import { AuthProvider } from './services/AuthContext.js'; // Importar AuthProvider
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login-register" element={<LoginRegister />} />
           <Route path="/categorias" element={<Category />} />
           <Route path="/utilizadores" element={<Utilizadores />} />
+          <Route path="/vagas" element={<VagasList />} />
         </Routes>
       </div>
     </AuthProvider>

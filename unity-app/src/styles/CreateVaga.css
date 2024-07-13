@@ -1,0 +1,57 @@
+.container {
+  margin-top: 60px;
+  padding: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-vaga {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-vaga:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Estilo específico para o react-select */
+.basic-multi-select {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
