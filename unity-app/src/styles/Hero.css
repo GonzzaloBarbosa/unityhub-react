@@ -1,84 +1,63 @@
+/* Hero.css */
 .heroVideo {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
-video{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Hero do Home*/
-
+/* Hero do Home */
 .texto-hero {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 0 20px;
-    text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
 }
 
-.texto-hero h1{
-    font-size: 3rem;
-    font-weight: 800;
-    background: aliceblue;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;   
+.texto-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: aliceblue;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.texto-hero p{
-    font-size: 1.2rem;
-    color: #fff;
-    padding: 0.5rem 0 2rem 0;
+.texto-hero p {
+  font-size: 1.2rem;
+  color: #fff;
+  padding: 0.5rem 0 2rem 0;
 }
 
-.texto-hero a{
-    text-decoration: none;
-    background-color: #fff;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #222;
-    
+.texto-hero a {
+  text-decoration: none;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #222;
 }
-  
-  .heroVideo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .homeVideo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-  }
-
-  /* Hero do Sobre*/
-  
 
 @media (max-width: 768px) {
   .texto-hero h1,
   .texto-hero p {
-      display: none; /* Esconde o texto em telas menores */
+      display: none; 
   }
 
   .texto-hero button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: block; /* Garante que o botão seja visível */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block; 
   }
-
 }
-
-

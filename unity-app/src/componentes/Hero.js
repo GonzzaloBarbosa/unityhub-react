@@ -13,7 +13,6 @@ function Hero(){
                 <h1>Corações Unidos para Fazer a Diferença</h1>
                 <p>Participe de nossa missão de transformar vidas através do voluntariado e faça a diferença hoje.</p>
                 
-                <button>Junte-se à Comunidade</button>
             </div>
             <SearchBar />
         </div>

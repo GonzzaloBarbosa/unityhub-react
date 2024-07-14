@@ -1,9 +1,10 @@
+/*
 .search-container {
   position: absolute;
   bottom: 30%;
   left: 50%;
   transform: translateX(-50%);
-  width: 60%; /* Ajustando a largura */
+  width: 60%; /* Ajustando a largura 
   text-align: center;
 }
 
@@ -12,17 +13,17 @@
   justify-content: space-around;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 15px; /* Aumentando o padding */
+  padding: 15px; 
   border-radius: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap; /* Adicionando flex-wrap para ajustar os itens em linhas diferentes */
-  position: relative; /* Necessário para posicionamento absoluto do botão */
+  flex-wrap: wrap; 
+  position: relative; 
 }
 
 .search-input {
   margin-bottom: 10px;
-  flex: 1; /* Permitir que os elementos cresçam */
-  min-width: 200px; /* Definir uma largura mínima */
+  flex: 1; 
+  min-width: 200px;  
 }
 
 .search-input label {
@@ -35,7 +36,7 @@
 .search-bar input[type='text'],
 .search-bar input[type='date'],
 .search-bar select {
-  width: 100%; /* Ajustar a largura para ocupar o espaço disponível */
+  width: 100%; 
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
@@ -44,32 +45,31 @@
 }
 
 .search-bar button {
-  padding: 12px 20px; /* Ajustando o padding do botão */
+  padding: 12px 20px; 
   border: none;
   background-color: #61dafb;
   color: white;
   cursor: pointer;
   border-radius: 90px;
   margin-top: 5px;
-  position: absolute; /* Posicionamento absoluto */
-  left: 50%; /* Centraliza horizontalmente */
-  bottom: -20px; /* Ajuste conforme necessário para a altura */
-  transform: translateX(-50%); /* Centraliza em relação ao ponto médio do botão */
+  position: absolute; 
+  left: 50%; 
+  bottom: -20px; 
+  transform: translateX(-50%); 
 }
 
 .search-bar button:hover {
   background-color: #51c2e0;
 }
 
-/* Media query para telas menores */
 @media (max-width: 768px) {
   .texto-hero, .texto-sobre {
-      top: 15%; /* Ajuste conforme necessário para altura do texto */
-      padding: 0 10px; /* Reduzindo padding para telas menores */
+      top: 15%; 
+      padding: 0 10px; 
   }
   
   .search-container {
-      bottom: 10%; /* Movendo a barra de pesquisa mais para baixo em telas menores */
+      bottom: 10%; 
   }
   
   .search-bar {
@@ -84,6 +84,6 @@
   .search-bar button {
       width: 50%;
       bottom: -20px;
-      display: block; /* Garante que o botão seja visível */
+      display: block; 
   }
 }
