@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbar {
+    margin-bottom: 20px; /* Ajuste conforme necessário */
+  }
+  
+  .candidaturas-list {
+    padding: 20px;
+    margin-top: 80px; /* Ajuste conforme necessário */
+  }
+  
+  .candidaturas-list h2 {
+    margin-bottom: 20px;
+  }
+  
+  .candidaturas-list .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .candidaturas-list .table th, .candidaturas-list .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .candidaturas-list .table th {
+    background-color: #f2f2f2;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 20px;
+  }
