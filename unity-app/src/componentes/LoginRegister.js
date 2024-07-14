@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Toast, ToastContainer } from 'react-bootstrap';
-import axios from '../services/axiosConfig.js'; 
-import { useAuth } from '../services/AuthContext.js'; // Importar o contexto
+import axios from '../services/axiosConfig'; 
+import { useAuth } from '../services/AuthContext'; 
 import '../styles/LoginRegister.css';
 
 const LoginRegister = () => {
@@ -85,7 +85,10 @@ const LoginRegister = () => {
         console.log('Login successful:', response.data);
         setToastMessage('Login realizado com sucesso!');
         setToastType('success');
-        login(formData.email); // Chamar login do contexto
+        const { token, user } = response.data; // Supondo que a resposta contenha o token JWT e os dados do usuário
+        sessionStorage.setItem('authToken', token); // Armazena o token no sessionStorage
+        sessionStorage.setItem('user', JSON.stringify(user)); // Armazena os dados do usuário no sessionStorage
+        login(formData.email, token); // Chamar login do contexto com email e token
         navigate('/');
       } else {
         const response = await axios.post('/api/UtilizadoresApi/register', {

@@ -4,7 +4,7 @@ import axios from '../services/axiosConfig';
 import { useAuth } from '../services/AuthContext';
 import '../styles/VagaDetalhes.css';
 
-const VagaDetalhe = () => {
+const VagaDetalhes = () => {
   const { id } = useParams();
   const { auth } = useAuth();
   const [vaga, setVaga] = useState(null);
@@ -49,7 +49,7 @@ const VagaDetalhe = () => {
 
     try {
       // Realiza uma requisição POST à API para criar uma candidatura para a vaga atual
-      const response = await axios.post(/api/CandidaturasAPI, { VagaFK: id });
+      const response = await axios.post('/api/CandidaturasAPI', { VagaFK: id });
       alert('Candidatura realizada com sucesso!');
     } catch (error) {
       // Exibe uma mensagem de erro se ocorrer um problema na requisição
@@ -85,4 +85,4 @@ const VagaDetalhe = () => {
   );
 };
 
-export default VagaDetalhe;
+export default VagaDetalhes;
