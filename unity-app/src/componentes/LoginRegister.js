@@ -78,20 +78,19 @@ const LoginRegister = () => {
 
     try {
       if (isLogin) {
-        const response = await axios.post('/api/UtilizadoresApi/login', {
+        const response = await axios.post('/api/UtilizadoresAPI/login', {
           email: formData.email,
           password: formData.password
         });
+        
         console.log('Login successful:', response.data);
         setToastMessage('Login realizado com sucesso!');
         setToastType('success');
-        const { token, user } = response.data; // Supondo que a resposta contenha o token JWT e os dados do usuário
-        sessionStorage.setItem('authToken', token); // Armazena o token no sessionStorage
-        sessionStorage.setItem('user', JSON.stringify(user)); // Armazena os dados do usuário no sessionStorage
+        const { token } = response.data; // Supondo que a resposta contenha o token JWT
         login(formData.email, token); // Chamar login do contexto com email e token
         navigate('/');
       } else {
-        const response = await axios.post('/api/UtilizadoresApi/register', {
+        const response = await axios.post('/api/UtilizadoresAPI/register', {
           nome: formData.name,
           email: formData.email,
           password: formData.password,

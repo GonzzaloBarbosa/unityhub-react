@@ -11,10 +11,11 @@ export const AuthProvider = ({ children }) => {
     // Efeito para verificar o token de autenticação ao montar o componente
     useEffect(() => {
         const token = sessionStorage.getItem('authToken');
-        if (token) {
+        const userEmail = sessionStorage.getItem('userEmail');
+        if (token && userEmail) {
             setAuth({
                 isAuthenticated: true,
-                isAdmin: sessionStorage.getItem('userEmail') === 'admin@UnityHub.pt',
+                isAdmin: userEmail === 'admin@UnityHub.pt',
             });
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }

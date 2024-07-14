@@ -11,58 +11,51 @@ const VagaDetalhes = () => {
   const [categorias, setCategorias] = useState([]);
   const [error, setError] = useState(null);
 
-  // useEffect é utilizado para procurar os detalhes da vaga quando o componente é montado
   useEffect(() => {
     const fetchVaga = async () => {
       try {
-        // Realiza uma requisição GET à API para obter os detalhes da vaga pelo ID
         const response = await axios.get(`/api/VagasAPI/${id}`);
-        // Define os detalhes da vaga obtidos na resposta da API
         setVaga(response.data);
 
-        // Verifica se há categorias e obtém os seus nomes
         if (response.data.categorias && response.data.categorias.$values.length > 0) {
           const categoriaIds = response.data.categorias.$values;
           const categoriaPromises = categoriaIds.map(async (categoriaId) => {
             const categoriaResponse = await axios.get(`/api/CategoriasAPI/${categoriaId}`);
             return categoriaResponse.data.nome;
           });
-          // Obtém os nomes das categorias e atualiza o estado
           const categoriaNomes = await Promise.all(categoriaPromises);
           setCategorias(categoriaNomes);
         }
       } catch (error) {
-        // Define uma mensagem de erro se ocorrer um problema na requisição
         setError('Erro ao procurar detalhes da vaga, por favor tente novamente mais tarde.');
       }
     };
 
     fetchVaga();
-  }, [id]); // A lista de dependências contém [id], fazendo com que este useEffect corra sempre que o id mudar
+  }, [id]);
 
-  // Função para candidatar-se a uma vaga
   const handleCandidatar = async () => {
+    console.log("Iniciando candidatura...");
     if (!auth.isAuthenticated) {
       alert('Por favor, faça login para se candidatar.');
       return;
     }
 
     try {
-      // Realiza uma requisição POST à API para criar uma candidatura para a vaga atual
-      const response = await axios.post('/api/CandidaturasAPI', { VagaFK: id });
+      console.log("Token de autenticação:", sessionStorage.getItem('authToken'));
+      const response = await axios.post('/api/CandidaturasAPI/Create', { VagaFK: id, Email: sessionStorage.getItem('userEmail') });
+      console.log("Resposta da candidatura:", response);
       alert('Candidatura realizada com sucesso!');
     } catch (error) {
-      // Exibe uma mensagem de erro se ocorrer um problema na requisição
+      console.error("Erro ao realizar candidatura:", error.response ? error.response.data : error.message);
       alert('Erro ao realizar candidatura, por favor tente novamente mais tarde.');
     }
   };
 
-  // Exibe uma mensagem de erro se houver um erro na requisição
   if (error) {
     return <div className="error">{error}</div>;
   }
 
-  // Exibe uma mensagem de carregamento enquanto os detalhes da vaga são obtidos
   if (!vaga) {
     return <div>Carregando...</div>;
   }
@@ -76,7 +69,6 @@ const VagaDetalhes = () => {
       <p><strong>Local:</strong> {vaga.local}</p>
       <p><strong>Período de Voluntariado:</strong> {vaga.periodoVoluntariado}</p>
       <p><strong>Categorias:</strong> {categorias.length > 0 ? categorias.join(', ') : 'N/A'}</p>
-      {/* Exibe o botão de candidatura se o utilizador estiver autenticado e não for administrador */}
       {auth.isAuthenticated && !auth.isAdmin && (
         <button onClick={handleCandidatar}>Candidatar-se</button>
       )}
