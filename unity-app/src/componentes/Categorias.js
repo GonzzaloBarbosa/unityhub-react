@@ -9,10 +9,12 @@ const Categorias = () => {
   const [editCategoria, setEditCategoria] = useState(null);
   const [editCategoriaName, setEditCategoriaName] = useState('');
 
+  // Utiliza o hook useEffect para procurar as categorias ao carregar o componente
   useEffect(() => {
     fetchCategorias();
   }, []);
 
+  // Função para buscar categorias da API
   const fetchCategorias = async () => {
     try {
       const response = await axios.get('https://localhost:7226/api/CategoriasAPI');
@@ -22,6 +24,7 @@ const Categorias = () => {
     }
   };
 
+  // Função para adicionar uma nova categoria
   const handleAddCategoria = async () => {
     if (newCategoria.trim()) {
       try {
@@ -34,19 +37,28 @@ const Categorias = () => {
     }
   };
 
+  // Função para eliminar uma categoria
   const handleDeleteCategoria = async (id) => {
     try {
-      await axios.delete('https://localhost:7226/api/CategoriasAPI/${id}');
+      await axios.delete(`https://localhost:7226/api/CategoriasAPI/${id}`);
       fetchCategorias();
     } catch (error) {
       console.error('Erro ao deletar categoria:', error);
     }
   };
 
+  // Função para editar uma categoria existente
   const handleEditCategoria = async () => {
     if (editCategoriaName.trim()) {
       try {
-        await axios.put('https://localhost:7226/api/CategoriasAPI/${editCategoria.id}, { id: editCategoria.id, nome: editCategoriaName }');
+        await axios.put(`https://localhost:7226/api/CategoriasAPI/${editCategoria.id}`, 
+          { id: editCategoria.id, nome: editCategoriaName },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
         setEditCategoria(null);
         setEditCategoriaName('');
         fetchCategorias();
