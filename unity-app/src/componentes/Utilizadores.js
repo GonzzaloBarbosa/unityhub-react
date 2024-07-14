@@ -1,6 +1,6 @@
 // componentes/Utilizadores.js
 import React, { useEffect, useState } from 'react';
-import axios from '../services/axiosConfig';
+import axios from '../services/axiosConfig'; 
 import '../styles/Utilizadores.css';
 import { useAuth } from '../services/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -18,6 +18,7 @@ const Utilizadores = () => {
   const fetchUtilizadores = async () => {
     try {
       const response = await axios.get('/api/UtilizadoresAPI/list');
+      console.log('API Response:', response.data);
       if (response.data && response.data.$values && Array.isArray(response.data.$values)) {
         setUtilizadores(response.data.$values);
       } else {
@@ -46,7 +47,7 @@ const Utilizadores = () => {
     <div className="utilizadores-container">
       <h2>Gestão de Utilizadores</h2>
       <ul className="utilizador-list">
-        {Array.isArray(utilizadores) && utilizadores.length > 0 ? (
+        {utilizadores.length > 0 ? (
           utilizadores.map((utilizador) => (
             <li key={utilizador.id}>
               <span className="utilizador-info">{utilizador.email}</span>
